@@ -12,7 +12,6 @@ Gz = gz(p1,p2,R,z,x);
 
 h1 = plot(x,Gz,".-")
 legend([h1], '4260kg/m^{3} 275m Deep Sphere', 'Location', 'Best');
-plot(x,Gz,".-")
 title('Gravitational Attraction of a Sphere');
 xlabel('X Distance (meters) in 100m Increments');
 ylabel('Gravitational Attraction (mGal)');
@@ -50,12 +49,10 @@ h1 = plot(x,Gz,'.-')
 hold on
 h2 = plot(x,Gz3,'.-')
 legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 350m Deep Sphere', 'Location', 'Best');
-
-figure
-plot(x,Gz3,'.-')
 title('Gravitational Attraction of Spheres at Varying Depths');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (mGal)');
+
 
 %2.2 Part B
 
@@ -69,8 +66,6 @@ hold on
 h2 = plot(x,Gz4,'.-')
 legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '5760/m^{3} 350m Deep Sphere', 'Location', 'Best');
 
-
-plot(x,Gz4,'.-')
 title('Gravitational Attraction of Spheres at Varying Densities');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (mGal)');
@@ -87,20 +82,29 @@ hold on
 h2 = plot(x,Gzx1,'.-')
 h3 = plot(x,Gzx2,'.-')
 h4 = plot(x,Gzx3,'.-')
-legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '5760kg/m^{3} 350m Deep Sphere', 'Location', 'Best');
+
 
 title('Horizontal Gravitational Acceleration of a Sphere');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (E)');
+
+legend([h1,h2,h3,h4],'4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 275m Deep Sphere''Location', 'Best');
+
 
 %2.3 Part A
 a = 100;
 
 gz_cyl = cylinderGz(a,z,p1,p2,x);
 figure
-plot(x,gz_cyl,'.-')
+h1 = plot(x,gz_cyl,'.-')
 hold on
-plot(x,Gz,'.-')
+h2 = plot(x,Gz,'.-')
+legend([h1,h2], '4260kg/m^{3} 275m Deep Cylinder','4260kg/m^{3} 275m Deep Sphere', 'Location', 'Best');
+title('Gravitational Attraction of a Sphere against a Cylinder');
+xlabel('X Distance (meters) in 100m increments');
+ylabel('Gravitational Attraction (mGal)');
+
+
 
 title('Gravitational Attraction of a Sphere against a Cylinder');
 xlabel('X Distance (meters) in 100m increments');
