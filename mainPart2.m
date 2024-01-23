@@ -30,7 +30,7 @@ Gz2 = gz(p1,p2,R,z,Z);
 
 h1 = mesh(xmesh,ymesh,Gz2)
 colorbar;
-title("2D Gravitational Attraction of a Sphere 275m Deep")
+title("2D Gravitational Attraction of a Sphere")
 xlabel('X Distance (meters) in 100m Increments')
 ylabel('Y Distance (meters) in 100m Increments')
 zlabel('Gravitational Attraction (mGal)')
@@ -62,8 +62,8 @@ Gz4 = gz(p1,p3,R,z1,x);
 h1 = plot(x,Gz,'.-')
 hold on
 h2 = plot(x,Gz4,'.-')
-legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '5760/m^{3} 350m Deep Sphere', 'Location', 'Best');
-title('Gravitational Attraction of Spheres at Varying Densities');
+legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '5760kg/m^{3} 350m Deep Sphere', 'Location', 'Best');
+title('Gravitational Attraction of Spheres at Varying Densities and Depths');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (mGal)');
 
@@ -84,7 +84,7 @@ title('Horizontal Gravitational Acceleration of a Sphere');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction per Meter (E)');
 
-legend([h1,h2,h3,h4],'4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 350m Deep Sphere', '5760kg/m^{3} 275m Deep Sphere', '5760kg/m^{3} 350m Deep Sphere''Location', 'Best');
+legend([h1,h2,h3,h4],'4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 350m Deep Sphere', '5760kg/m^{3} 275m Deep Sphere', '5760kg/m^{3} 350m Deep Sphere','Location', 'Best');
 
 %2.3 Part A
 a = 100;
@@ -107,7 +107,7 @@ figure
 h1 = mesh(xmesh,ymesh,gz2_cyl,FaceColor="blue",FaceAlpha="0.25")
 hold on
 h2 = mesh(xmesh,ymesh,Gz2,FaceColor = "red")
-title("2D Gravitational Attraction of a Cylinder vs a Sphere 275m Deep")
+title("2D Gravitational Attraction of a Cylinder vs a Sphere")
 xlabel('X Distance (meters) in 100m Increments')
 ylabel('Y Distance (meters) in 100m Increments')
 zlabel('Gravitational Attraction (mGal)')
