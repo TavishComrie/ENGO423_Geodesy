@@ -10,6 +10,9 @@ x = -5000:100:5000;
 Gz = gz(p1,p2,R,z,x);
 
 plot(x,Gz,".-")
+title('Gravitational Attraction of a Sphere');
+xlabel('X Distance (meters) in 100m Increments');
+ylabel('Gravitational Attraction (mGal)');
 hold off;
 
 
@@ -37,8 +40,13 @@ Gz3 = gz(p1,p2,R,z1,x);
 plot(x,Gz,'.-')
 hold on
 plot(x,Gz3,'.-')
-figure
+title('Gravitational Attraction of Spheres at Varying Depths');
+xlabel('X Distance (meters) in 100m increments');
+ylabel('Gravitational Attraction (mGal)');
+
 %2.2 Part B
+
+figure
 p3 = 5760;
 
 Gz4 = gz(p1,p3,R,z,x);
@@ -46,6 +54,9 @@ Gz4 = gz(p1,p3,R,z,x);
 plot(x,Gz,'.-')
 hold on
 plot(x,Gz4,'.-')
+title('Gravitational Attraction of Spheres at Varying Densities');
+xlabel('X Distance (meters) in 100m increments');
+ylabel('Gravitational Attraction (mGal)');
 
 %2.2 Part C
 Gzx = gzx(p1,p2,R,z,x);
@@ -56,6 +67,10 @@ plot(x,Gzx,'.-')
 hold on
 plot(x,Gzx1,'.-')
 
+title('Horizontal Gravitational Acceleration of a Sphere');
+xlabel('X Distance (meters) in 100m increments');
+ylabel('Gravitational Attraction (mGal)');
+
 %2.3 Part A
 a = 100;
 
@@ -64,6 +79,12 @@ figure
 plot(x,gz_cyl,'.-')
 hold on
 plot(x,Gz,'.-')
+
+title('Gravitational Attraction of a Sphere against a Cylinder');
+xlabel('X Distance (meters) in 100m increments');
+ylabel('Gravitational Attraction (mGal)');
+
+
 
 %2.3 Part B
 gz2_cyl = cylinderGz(a,z,p1,p2,Z);
