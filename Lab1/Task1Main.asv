@@ -38,8 +38,6 @@ x = rCI(1,1);
 y = rCI(2,1);
 z = rCI(3,1);
 [RACheck, DecCheck] = xyzToAz(x,y,z);
-%Declination defined with different formula than z so overwrite it
-DecCheck = asind(z);
 
 %Outputting the initial RA and DEC with final to confirm they match
 RACheck

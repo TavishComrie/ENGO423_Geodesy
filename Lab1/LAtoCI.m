@@ -28,9 +28,9 @@ P2(3,3) = 1;
 
 
 rLA = zeros(3,1);
-rLA(1,1) = cosd(zen)*cosd(az);
-rLA(2,1) = cosd(zen)*sind(az);
-rLA(3,1) = sind(zen);
+rLA(1,1) = sind(zen)*cosd(az);
+rLA(2,1) = sind(zen)*sind(az);
+rLA(3,1) = cosd(zen);
 
 [t] = julian2000(year,month,day,UT1);
 [gast] = jul2gast(UT1,t);
