@@ -38,7 +38,7 @@ rLA(3,1) = cosd(zen);
 [za,thetaa,zetaa] = precession(t);      %Finding precession values
 
 %Creating precession matrix using values from the precession function
-P = R3(-zetaa)*R2(thetaa)*R3(-za);
+P = R3(-za)*R2(thetaa)*R3(-zetaa);
 %Creating nutation matrix using values from the nutation function
 N = R1(-eps0-deps)*R3(-dpsi)*R1(eps0);
 
