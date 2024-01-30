@@ -3,9 +3,9 @@
 %Outputs 3x3 rotation matrix 
 function R3 = R3(angle)
     R3 = zeros(3,3);
-    R3(1,1) = cos(angle);
-    R3(1,2) = sin(angle);
-    R3(2,1) = -sin(angle);
-    R3(2,2) = cos(angle);
+    R3(1,1) = cosd(angle);
+    R3(1,2) = sind(angle);
+    R3(2,1) = -sind(angle);
+    R3(2,2) = cosd(angle);
     R3(3,3) = 1;
 end

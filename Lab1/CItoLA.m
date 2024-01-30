@@ -30,15 +30,15 @@ rCI(2,1) = cosd(Dec)*sind(RA);
 rCI(3,1) = sind(Dec);
 
 
-[t] = julian2000(year,month,day,UT1);   %Finding julian time using julian2000
+[t] = julian2000(year,month,day,UT1)   %Finding julian time using julian2000
 [gast] = jul2gast(UT1,t);               %Finding the GAST using jul2gast
-[eps0,deps,dpsi] = nutation(t);         %Finding nutation values
-[za,thetaa,zetaa] = precession(t);      %Finding precession values
+[eps0,deps,dpsi] = nutation(t)         %Finding nutation values
+[za,thetaa,zetaa] = precession(t)      %Finding precession values
 
 %Creating precession matrix using values from the precession function
-P = R3(-zetaa)*R2(thetaa)*R3(-za);
+P = R3(-za)*R2(thetaa)*R3(-zetaa)
 %Creating nutation matrix using values from the nutation function
-N = R1(-eps0-deps)*R3(-dpsi)*R1(eps0);
+N = R1(-eps0-deps)*R3(-dpsi)*R1(eps0)
 
 %Final formula to complete the actual transformation from rCI to rLA
 rLA = P2*R2(-(90-lat))*R3(-(180-long))*R2(-Xp)*R1(-Yp)*R3(gast*15)*N*P*rCI;
