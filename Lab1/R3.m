@@ -1,3 +1,6 @@
+%Function to create R3 rotation matrix about z
+%Input the angle
+%Outputs 3x3 rotation matrix 
 function R3 = R3(angle)
     R3 = zeros(3,3);
     R3(1,1) = cos(angle);

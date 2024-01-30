@@ -1,3 +1,6 @@
+%Function to create R2 rotation matrix about y
+%Input the angle
+%Outputs 3x3 rotation matrix 
 function R2 = R2(angle)
     R2 = zeros(3,3);
     R2(1,1) = cos(angle);
