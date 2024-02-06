@@ -15,6 +15,7 @@ title('Gravitational Attraction of a Sphere');
 xlabel('X Distance (meters) in 100m Increments');
 ylabel('Gravitational Attraction (mGal)');
 hold off;
+print(gcf, '1', '-dpng', '-r300');
 
 
 
@@ -38,6 +39,9 @@ legend([h1], '4260kg/m^{3} 275m Deep Sphere', 'Location', 'Best');
 
 grid on
 
+print(gcf, '2', '-dpng', '-r300');
+
+
 %2.2 Part A
 figure
 z1 = 350;
@@ -51,6 +55,9 @@ legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 350m Deep Sphere',
 title('Gravitational Attraction of Spheres at Varying Depths');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (mGal)');
+
+
+print(gcf, '3', '-dpng', '-r300');
 
 %2.2 Part B
 
@@ -66,6 +73,9 @@ legend([h1,h2],'4260kg/m^{3} 275m Deep Sphere', '5760kg/m^{3} 350m Deep Sphere',
 title('Gravitational Attraction of Spheres at Varying Densities and Depths');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (mGal)');
+
+print(gcf, '4', '-dpng', '-r300');
+
 
 %2.2 Part C
 Gzx = gzx(p1,p2,R,z,x);
@@ -86,6 +96,9 @@ ylabel('Gravitational Attraction per Meter (E)');
 
 legend([h1,h2,h3,h4],'4260kg/m^{3} 275m Deep Sphere', '4260kg/m^{3} 350m Deep Sphere', '5760kg/m^{3} 275m Deep Sphere', '5760kg/m^{3} 350m Deep Sphere','Location', 'Best');
 
+print(gcf, '5', '-dpng', '-r300');
+
+
 %2.3 Part A
 a = 100;
 
@@ -99,6 +112,7 @@ title('Gravitational Attraction of a Sphere against a Cylinder');
 xlabel('X Distance (meters) in 100m increments');
 ylabel('Gravitational Attraction (mGal)');
 
+print(gcf, '6', '-dpng', '-r300');
 
 
 %2.3 Part B
@@ -112,3 +126,5 @@ xlabel('X Distance (meters) in 100m Increments')
 ylabel('Y Distance (meters) in 100m Increments')
 zlabel('Gravitational Attraction (mGal)')
 legend([h1,h2], '4260kg/m^{3} 275m Deep Cylinder','4260kg/m^{3} 275m Deep Sphere', 'Location', 'Best');
+
+print(gcf, '7', '-dpng', '-r300');
