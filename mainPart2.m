@@ -116,7 +116,7 @@ print(gcf, '6', '-dpng', '-r300');
 
 
 %2.3 Part B
-gz2_cyl = cylinderGz(a,z,p1,p2,Z);
+gz2_cyl = cylinderGz(a,z,p1,p2,xmesh);
 figure
 h1 = mesh(xmesh,ymesh,gz2_cyl,FaceColor="blue",FaceAlpha="0.25")
 hold on
