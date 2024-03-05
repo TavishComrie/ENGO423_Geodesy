@@ -36,35 +36,3 @@ hold off
 
 
 
-
-
-
-function P = Pnm(Nmax,t)
-    theta = acosd(t);
-    
-    P(Nmax,Nmax) = zeros;
-    P(1,1) = 1;
-    P(2,2) = sqrt(3)*sind(theta);
-    for n = 3:Nmax
-        f1 = sqrt((2*n+1)/(2*n));
-        P(n,n) = f1*sind(theta)*P(n-1,n-1);
-    end
-
-    for n = 2:Nmax
-        f2 = sqrt((2*n)+1);
-        P(n,n-1) = f2*cosd(theta)*P(n-1,n-1); 
-    end
-    
-    for n = 3:Nmax
-        for m = 1:n-2
-            f3 = sqrt(((2*n)+1)/((n-m)*(n-m)));
-            f4 = sqrt((2*n)-1);
-            f5 = sqrt(((n+m-1)*(n-m-1))/((2*n)-3));
-
-            P(n,m) = f3*((f4*cosd(theta)*P(n-1,m))-(f5*P(n-2,m)));
-        end
-    end
-    
-
-end
-
