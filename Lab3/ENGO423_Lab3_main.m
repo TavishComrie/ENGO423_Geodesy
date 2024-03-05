@@ -47,5 +47,15 @@ hold off
 
 
 
+nVals = [15,10,5];
 
+P = Pnm(20,cosd(90));
 
+for i = 1:size(nVals,2)
+    n = nVals(1,i);
+    sum(1,i) = 0;
+    for m = 0:n
+        mindex = m + 1;
+        sum(1,i) = sum(1,i) + P(n+1,mindex)^2;
+    end
+end
