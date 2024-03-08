@@ -75,8 +75,8 @@ function [Rnm,Snm] = SphericalHarmonics(nmax,n,m)
         P = Pnm(nmax+1,cosd(theta));
         PnmVal(theta+1,1)=P(n+1,m+1);
         for lambda = 0:360
-            Rnm(theta+1,lambda+1) = PnmVal(theta+1,1)*cos(m*lambda);
-            Snm(theta+1,lambda+1) = PnmVal(theta+1,1)*sin(m*lambda);
+            Rnm(theta+1,lambda+1) = PnmVal(theta+1,1)*cosd(m*lambda);
+            Snm(theta+1,lambda+1) = PnmVal(theta+1,1)*sind(m*lambda);
         end
     end
 
