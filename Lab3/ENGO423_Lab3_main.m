@@ -105,18 +105,26 @@ function [Rnm,Snm] = SphericalHarmonics(nmax,n,m)
         end
     end
 
-
-    G = Rnm + Snm; %I don't really know about this
-
     %Plots the results across each lat, long
     figure;
     hold on;
-    imagesc([0 360],[0 180],G)
+    imagesc([0 360],[0 180],Rnm)
     xlabel(['Longitude, ' char(176)])
     ylabel(['Lattitude, ' char(176)])
     xlim([0 360])
     ylim([0 180])
-    titlePhrase = ['Spherical Harmonic for n=' num2str(n) ',m=' num2str(m) ')'];
+    titlePhrase = ['Spherical Harmonic R for n=' num2str(n) ',m=' num2str(m) ')'];
+    title(titlePhrase)
+    colorbar
+
+    figure;
+    hold on;
+    imagesc([0 360],[0 180],Snm)
+    xlabel(['Longitude, ' char(176)])
+    ylabel(['Lattitude, ' char(176)])
+    xlim([0 360])
+    ylim([0 180])
+    titlePhrase = ['Spherical Harmonic S for n=' num2str(n) ',m=' num2str(m) ')'];
     title(titlePhrase)
     colorbar
 end
