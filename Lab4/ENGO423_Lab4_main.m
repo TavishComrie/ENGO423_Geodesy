@@ -52,7 +52,13 @@ function [N] = GeoidUndulation(nmax,GM,R,r,Grav,J,Cnm,Snm,lat,long)
             for n = 2:nmax
                 Sum = 0;
                 for m = 0:n
-                deltaC = Cnm(n+1,m+1)+J(n+1,1);
+                if (m==0)
+                    Jval = J(n+1,1);
+                else
+                    Jval = 0;
+                end
+                    
+                deltaC = Cnm(n+1,m+1)+Jval;
                 deltaS = Snm(n+1,m+1);
                 term1 = deltaC*cosd(m*lambda);
                 term2 = deltaS*sind(m*lambda);
@@ -77,9 +83,14 @@ function [N] = GeoidUndulation(nmax,GM,R,r,Grav,J,Cnm,Snm,lat,long)
     ylabel(['Lattitude, ' char(176)])
     xlim([-180 180])
     ylim([-90 90])
-    titlePhrase = ['Spherical Harmonic R for n=' num2str(n) ',m=' num2str(m) ')'];
+    titlePhrase = ['Geoid Height N (m) for n=' num2str(n) ', m=' num2str(m) ', h=' num2str((r-R)/1000) 'km'];
     title(titlePhrase)
+
+    clim([-110 110])
     colorbar
+
+    disp(min(N(:)))
+    disp(max(N(:)))
 
 %     figure;
 %     hold on;
@@ -109,7 +120,13 @@ function A = GravityAnomaly(nmax,GM,R,J,Cnm,Snm,lat,long)
             for n = 2:nmax
                 Sum = 0;
                 for m = 0:n
-                deltaC = Cnm(n+1,m+1)+J(n+1,1);
+                if (m==0)
+                    Jval = J(n+1,1);
+                else
+                    Jval = 0;
+                end
+                
+                deltaC = Cnm(n+1,m+1)+Jval;
                 deltaS = Snm(n+1,m+1);
                 term1 = deltaC*cosd(m*lambda);
                 term2 = deltaS*sind(m*lambda);
@@ -127,14 +144,14 @@ function A = GravityAnomaly(nmax,GM,R,J,Cnm,Snm,lat,long)
     %Plots the results across each lat, long
     figure;
     hold on;
-    imagesc([-180 180],[-90 90],A)
+    imagesc([-180 180],[90 -90],A)
     hold on
     plot(long,lat);
     xlabel(['Longitude, ' char(176)])
     ylabel(['Lattitude, ' char(176)])
     xlim([-180 180])
     ylim([-90 90])
-    titlePhrase = ['Spherical Harmonic R for n=' num2str(n) ',m=' num2str(m) ')'];
+    titlePhrase = ['Gravity Anomaly Δg (mGal) for n=' num2str(n) ',m=' num2str(m) ')'];
     title(titlePhrase)
     colorbar
 end
