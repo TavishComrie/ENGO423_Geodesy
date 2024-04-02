@@ -33,7 +33,7 @@ C = zeros(size(NormalHeightH,1),1);
 
 %From here it is our own code
 for i = 1:size(NormalHeightH)
-    ybar(i) = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
+    [ybar(i),y(i)] = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
     ybar45(i) = meanNormalGravity(45,NormalHeightH(i));
 end
 
@@ -48,7 +48,7 @@ Hd = zeros(size(NormalHeightH,1),1);
 
 for i = 1:size(NormalHeightH,1)
     H(i) = OrthoHeight(C(i),gmGal(i),NormalHeightH(i));
-    Hd = C(i) / ybar45(i);
+    Hd(i) = C(i) / ybar45(i);
 end
 
 Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
@@ -57,7 +57,7 @@ Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and 
 HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
 
 
-
+EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
 
 %% Task 1.2
 
@@ -76,7 +76,7 @@ function [H] = OrthoHeight(C,g,Hstar)
           gMean = g+(0.0424*Hstar);
           H = C/(gMean*1E-5);
 
-          if abs((Hstar-H)/H)<0.001
+          if abs((Hstar-H)/H)<0.0001
               break
           else
               Hstar = H;
@@ -95,8 +95,11 @@ function [corr] = PlotHeights(Hdiff,H,xaxis,yaxis)
     title(titlePhrase);
     xlabel(xPhrase);
     ylabel(yPhrase);
-g
+
     corr = corrcoef(Hdiff,H);
 end
 
-%% Task 
+%% Task 1.2 Functions
+function [Bdiff] = BouguerDiff(gB,H,gBar)
+    Bdiff = gB.*H./gBar;
+end
