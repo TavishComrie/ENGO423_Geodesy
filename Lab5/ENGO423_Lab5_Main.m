@@ -33,8 +33,9 @@ C = zeros(size(NormalHeightH,1),1);
 
 %From here it is our own code
 for i = 1:size(NormalHeightH)
-    [ybar(i),y(i)] = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
     ybar45(i) = NormalGravity(45);
+    [ybar(i),y(i)] = meanNormalGravity(fiDD(i),NormalHeightH(i));
+
 end
 
 
@@ -42,13 +43,14 @@ for i = 1:size(NormalHeightH,1)
     C(i,1) = NormalHeightH(i)*ybar(i);
 end
 
+
 H = zeros(size(NormalHeightH,1),1);
 Hd = zeros(size(NormalHeightH,1),1);
 
 
 for i = 1:size(NormalHeightH,1)
     H(i) = OrthoHeight(C(i),gmGal(i),NormalHeightH(i));
-    Hd(i) = C(i) / ybar45(i);
+    Hd(i) = C(i)/ ybar45(i);
 end
 
 Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
@@ -57,16 +59,19 @@ Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and 
 HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
 
 
-EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
+
 
 %% Task 1.2
 
-deltag = g - NormalGravityatH(lambdaDD,NormalHeightH);
-deltagBouger = g - NormalGravityatH(lambdaDD,NormalHeightH) - 0.1119.*NormalHeightH;
+deltag = gmGal*1E-6 - NormalGravityatH(fiDD,NormalHeightH);
+deltagBouger = gmGal*1E-6 - NormalGravityatH(fiDD,NormalHeightH) - 0.1119.*NormalHeightH;
 
 gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
 gravAnomBougerCorr = PlotHeights(deltagBouger,NormalHeightH,"Normal Height","Bouger Anomalies");
 
+Bdiff = BouguerDiff(deltagBouger,H, ybar);
+
+EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
 
 
 %% Task 1.1 Functions
@@ -74,7 +79,7 @@ function [H] = OrthoHeight(C,g,Hstar)
 
      while true
           gMean = g+(0.0424*Hstar);
-          H = C/(gMean*1E-5);
+          H = C/(gMean);
 
           if abs((Hstar-H)/H)<0.0001
               break
