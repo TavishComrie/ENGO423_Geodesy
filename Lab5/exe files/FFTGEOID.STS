@@ -1,0 +1,28 @@
+
+            The statistics of the geoid undulations:
+            maximum  N =   1.334 m,
+            minimum  N =  -1.801 m,
+            mean value =  -0.012 m,
+            RMS  value =   0.335 m,
+            STD  value =   0.335 m.
+
+
+     The formula used is 
+     Stokes formula with original spherical kernel function (by 1D FFT),   
+     Gravity anomaliy file is FayeDiff.txt
+     it has 330 rows and 240 columns,
+     with grid spacing
+       2.00 minutes in North-South direction and
+       2.00 minutes in West-East direction.
+     The gravity anomalies were written
+     rows from North to South & columns from West to East,
+     The latitude of the first point is  60.0000 degree.
+     The longitude of the first point is-118.0000 degree.
+     The integration was done over the whole computation area.
+
+            The statistics of the gravity anomalies:
+            maximum dg =  135.397 mGal,
+            minimum dg = -149.070 mGal,
+            mean value =   -0.112 mGal,
+            RMS  value =   20.941 mGal,
+            STD  value =   20.941 mGal.
