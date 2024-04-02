@@ -27,11 +27,14 @@ gmGal = tbl.gmGal;
 %% Clear temporary variables
 clear opts tbl
 ybar = zeros(size(NormalHeightH,1),1);
+ybar45 = zeros(size(NormalHeightH,1),1);
+
 C = zeros(size(NormalHeightH,1),1);
 
 %From here it is our own code
 for i = 1:size(NormalHeightH)
     ybar(i) = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
+    ybar45(i) = meanNormalGravity(45,NormalHeightH(i));
 end
 
 
@@ -40,18 +43,27 @@ for i = 1:size(NormalHeightH,1)
 end
 
 H = zeros(size(NormalHeightH,1),1);
+Hd = zeros(size(NormalHeightH,1),1);
+
 
 for i = 1:size(NormalHeightH,1)
     H(i) = OrthoHeight(C(i),gmGal(i),NormalHeightH(i));
+    Hd = C(i) / ybar45(i);
 end
 
 corr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
 
 
+HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
 
 
 
 
+%% Task 1.2
+
+
+
+%% Task 1.1 Functions
 function [H] = OrthoHeight(C,g,Hstar)
 
      while true
@@ -80,3 +92,5 @@ function [corr] = PlotHeights(Hdiff,H,xaxis,yaxis)
 g
     corr = corrcoef(Hdiff,H);
 end
+
+%% Task 
