@@ -34,7 +34,7 @@ C = zeros(size(NormalHeightH,1),1);
 %From here it is our own code
 for i = 1:size(NormalHeightH)
     [ybar(i),y(i)] = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
-    ybar45(i) = meanNormalGravity(45,NormalHeightH(i));
+    ybar45(i) = NormalGravity(45);
 end
 
 
