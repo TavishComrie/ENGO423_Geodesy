@@ -1,4 +1,4 @@
-function [ybar] = meanNormalGravity(lat,Hs)
+function [ybar,y] = meanNormalGravity(lat,Hs)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 y = NormalGravity(lat);
