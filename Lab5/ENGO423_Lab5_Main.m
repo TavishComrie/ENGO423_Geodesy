@@ -51,7 +51,7 @@ for i = 1:size(NormalHeightH,1)
     Hd(i) = C(i) / ybar45(i);
 end
 
-corr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
+Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
 
 
 HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
@@ -60,6 +60,12 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
 
 %% Task 1.2
+
+deltag = g - NormalGravityatH(lambdaDD,NormalHeightH);
+deltagBouger = g - NormalGravityatH(lambdaDD,NormalHeightH) - 0.1119.*NormalHeightH;
+
+gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
+gravAnomBougerCorr = PlotHeights(deltagBouger,NormalHeightH,"Normal Height","Bouger Anomalies");
 
 
 
