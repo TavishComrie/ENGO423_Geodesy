@@ -15,7 +15,7 @@ opts.VariableNames = ["BM", "fidecimalDegree", "lambdadecimaDegree", "NormalHeig
 opts.VariableTypes = ["double", "double", "double", "double", "double"];
 
 % Import the data
-tbl = readtable("C:\Users\tavish.comrie\Documents\GitHub\ENGO423_Geodesy\Lab5\Normal_Heights_Gravity_Line1.xls", opts, "UseExcel", false);
+tbl = readtable("Normal_Heights_Gravity_Line1.xls", opts, "UseExcel", false);
 
 %% Convert to output type
 BM = tbl.BM;
