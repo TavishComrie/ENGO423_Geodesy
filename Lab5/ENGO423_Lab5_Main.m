@@ -26,11 +26,14 @@ gmGal = tbl.gmGal;
 %% Clear temporary variables
 clear opts tbl
 ybar = zeros(size(NormalHeightH,1),1);
+ybar45 = zeros(size(NormalHeightH,1),1);
+
 C = zeros(size(NormalHeightH,1),1);
 
 %From here it is our own code
 for i = 1:size(NormalHeightH)
     ybar(i) = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
+    ybar45(i) = meanNormalGravity(45,NormalHeightH(i))
 end
 
 
@@ -38,7 +41,6 @@ for i = 1:size(NormalHeightH,1)
     C(i,1) = NormalHeightH(i)*meanNormalGravity(i);
 
 end
-
 
 
 
