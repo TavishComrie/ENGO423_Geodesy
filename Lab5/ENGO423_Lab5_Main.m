@@ -33,7 +33,7 @@ C = zeros(size(NormalHeightH,1),1);
 %From here it is our own code
 for i = 1:size(NormalHeightH)
     ybar(i) = meanNormalGravity(lambdaDD(i),NormalHeightH(i));
-    ybar45(i) = meanNormalGravity(45,NormalHeightH(i))
+    ybar45(i) = meanNormalGravity(45,NormalHeightH(i));
 end
 
 
@@ -42,12 +42,18 @@ for i = 1:size(NormalHeightH,1)
 end
 
 H = zeros(size(NormalHeightH,1),1);
+Hd = zeros(size(NormalHeightH,1),1);
+
 
 for i = 1:size(NormalHeightH,1)
     H(i) = OrthoHeight(C(i),gmGal(i),NormalHeightH(i));
+    Hd = C(i) / ybar45(i);
 end
 
 
+
+
+HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
 
 
 
