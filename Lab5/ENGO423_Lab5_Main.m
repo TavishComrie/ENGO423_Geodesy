@@ -65,3 +65,17 @@ function [H] = OrthoHeight(C,g,Hstar)
      end
        
 end
+
+function [corr] = PlotHeights(Hdiff,H,xaxis,yaxis)
+    figure;
+    plot(H,Hdiff)
+    xPhrase = [xaxis ', (m)'];
+    yPhrase = [yaxis ', (m)'];
+    titlePhrase = [xaxis ' vs ' yaxis ' at Each Benchmark'];
+
+    title(titlePhrase);
+    xlabel(xPhrase);
+    ylabel(yPhrase);
+
+    corr = corrcoef(Hdiff,H);
+end
