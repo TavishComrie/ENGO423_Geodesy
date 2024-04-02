@@ -39,8 +39,9 @@ g = gmGal*1E-5;
 
 
 for i = 1:size(NormalHeightH)
+    ybar45(i) = NormalGravity(45);
     [ybar(i),y(i)] = meanNormalGravity(fiDD(i),NormalHeightH(i));
-    ybar45(i) = meanNormalGravity(45,NormalHeightH(i));
+
 end
 
 
