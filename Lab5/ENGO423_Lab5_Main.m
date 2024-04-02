@@ -60,6 +60,12 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 
 %% Task 1.2
 
+deltag = g - NormalGravityatH(lambdaDD,NormalHeightH);
+deltagBouger = g - NormalGravityatH(lambdaDD,NormalHeightH) - 0.1119.*NormalHeightH;
+
+gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
+gravAnomBougerCorr = PlotHeights(deltagBouger,NormalHeightH,"Normal Height","Bouger Anomalies");
+
 
 
 %% Task 1.1 Functions
