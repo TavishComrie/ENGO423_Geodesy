@@ -51,7 +51,7 @@ for i = 1:size(NormalHeightH,1)
     Hd = C(i) / ybar45(i);
 end
 
-corr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
+Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
 
 
 HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
