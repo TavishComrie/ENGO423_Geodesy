@@ -38,8 +38,13 @@ end
 
 
 for i = 1:size(NormalHeightH,1)
-    C(i,1) = NormalHeightH(i)*meanNormalGravity(i);
+    C(i,1) = NormalHeightH(i)*ybar(i);
+end
 
+H = zeros(size(NormalHeightH,1),1);
+
+for i = 1:size(NormalHeightH,1)
+    H(i) = OrthoHeight(C(i),gmGal(i),NormalHeightH(i));
 end
 
 
@@ -51,14 +56,15 @@ end
 
 
 function [H] = OrthoHeight(C,g,Hstar)
-     while True
+
+     while true
           gMean = g+0.0424*Hstar;
           H = C/gMean;
 
           if (Hstar-H)<0.01
-              Hstar = H;
-              continue
+              break
           else
+              Hstar = H;
           end
      end
        
