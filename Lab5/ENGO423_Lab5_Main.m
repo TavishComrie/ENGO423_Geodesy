@@ -58,9 +58,11 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 
 
 
+%% Task 1.2
 
 
 
+%% Task 1.1 Functions
 function [H] = OrthoHeight(C,g,Hstar)
 
      while true
@@ -89,3 +91,5 @@ function [corr] = PlotHeights(Hdiff,H,xaxis,yaxis)
 
     corr = corrcoef(Hdiff,H);
 end
+
+%% Task 
