@@ -37,6 +37,10 @@ C = zeros(size(NormalHeightH,1),1);
 g = gmGal*1E-5;
 %From here it is our own code
 
+[NormalHeightH,i] = sort(NormalHeightH);
+g = g(i,:);
+fiDD = fiDD(i,:);
+
 
 for i = 1:size(NormalHeightH)
     ybar45(i) = NormalGravity(45);
