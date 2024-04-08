@@ -27,19 +27,25 @@ gmGal = tbl.gmGal;
 clear opts tbl
 %From here it is our own code
 
- importfile("Faye_Anomaly.mat");
- importfile("GravityAnomaly_GM_200.mat");
+importfile("Faye_Anomaly.mat");
+importfile("GravityAnomaly_GM_200.mat");
+[NormalHeightH,I] = sort(NormalHeightH);
+
+
 
 ybar = zeros(size(NormalHeightH,1),1);
 ybar45 = zeros(size(NormalHeightH,1),1);
 
 C = zeros(size(NormalHeightH,1),1);
 g = gmGal*1E-5;
+g = g(I,:);
+fiDD = fiDD(I,:);
 %From here it is our own code
 
 [NormalHeightH,i] = sort(NormalHeightH);
 g = g(i,:);
 fiDD = fiDD(i,:);
+
 
 
 for i = 1:size(NormalHeightH)
@@ -74,14 +80,14 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 %% Task 1.2
 
 deltag = g - NormalGravityatH(fiDD,NormalHeightH);
-deltagBouger = g - NormalGravityatH(fiDD,NormalHeightH) - 0.1119.*NormalHeightH;
+deltagBouger = g*1E5 - NormalGravityatH(fiDD,NormalHeightH)*1E5 - 0.1119.*NormalHeightH;
 
 gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
-gravAnomBougerCorr = PlotHeights(deltagBouger,NormalHeightH,"Normal Height","Bouger Anomalies");
+gravAnomBougerCorr = PlotHeights(deltagBouger*1E-5,NormalHeightH,"Normal Height","Bouger Anomalies");
 
-Bdiff = BouguerDiff(deltagBouger,H, ybar);
+Bdiff = BouguerDiff(deltagBouger*1E-5,H, ybar);
 
-EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
+EmpRelationship = PlotHeights(abs(Bdiff-(NormalHeightH-H)),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
 
 %%Task 2
 
@@ -93,8 +99,8 @@ writematrix(FayeDiff,"FayeDiff.txt");
 function [H] = OrthoHeight(C,g,Hstar)
 
      while true
-          gMean = g+(0.0424*Hstar);
-          H = C/(gMean);
+          gMean = g*1E5+(0.0424*Hstar);
+          H = C/(gMean*1E-5);
 
           if abs((Hstar-H)/H)<0.0001
               break
