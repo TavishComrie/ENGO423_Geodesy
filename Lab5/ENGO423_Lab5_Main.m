@@ -87,7 +87,7 @@ gravAnomBougerCorr = PlotGrav(deltagBouger*1E-5,NormalHeightH,"Normal Height","B
 
 Bdiff = BouguerDiff(deltagBouger*1E-5,H, ybar);
 
-EmpRelationship = PlotHeights(abs(Bdiff-(NormalHeightH-H)),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
+EmpRelationship = PlotHeights(abs(Bdiff-(NormalHeightH-H)),H,"Orthometric Height","Bouguer Difference and Helmert Difference Difference");
 
 %%Task 2
 
