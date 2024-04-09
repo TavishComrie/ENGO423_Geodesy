@@ -1,7 +1,6 @@
 function [ybar,y] = meanNormalGravity(lat,Hs)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-y = NormalGravity(lat)
+%Finds ybar based on Hs
+y = NormalGravity(lat);
 
 sinl = sind(lat).^2;
 

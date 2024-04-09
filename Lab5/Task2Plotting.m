@@ -1,3 +1,4 @@
+%Imports all data
 importfile("GeoidUndulation_GM_200.mat");
 importfile("N_EGM2008_2160.mat");
 
@@ -8,7 +9,7 @@ NStokes = reshape(NStokes',240,330)';
 NIND = reshape(NIND',240,330)';
 
 
-
+%Plots all results
 %% 2.a
 plotWavelengths(GeoidUndulation_GM_200)
 

@@ -1,6 +1,5 @@
 function [y] = NormalGravity(lat)
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+%Finds gravity on ellipsoid, WGS80
 ya = 9.7803267715;
 k = 0.001931851353;
 e2 = 0.00669438002290;

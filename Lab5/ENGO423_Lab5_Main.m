@@ -30,37 +30,36 @@ clear opts tbl
  importfile("Faye_Anomaly.mat");
  importfile("GravityAnomaly_GM_200.mat");
 
+%Initializes vectors
 ybar = zeros(size(NormalHeightH,1),1);
 ybar45 = zeros(size(NormalHeightH,1),1);
-
 C = zeros(size(NormalHeightH,1),1);
 g = gmGal*1E-5;
-%From here it is our own code
 
-
+%Finds gravity values
 for i = 1:size(NormalHeightH)
     ybar45(i) = NormalGravity(45);
     [ybar(i),y(i)] = meanNormalGravity(fiDD(i),NormalHeightH(i));
 
 end
 
-
+%Finds C values
 for i = 1:size(NormalHeightH,1)
     C(i,1) = NormalHeightH(i)*ybar(i);
 end
 
-
+%Initializes vectros
 H = zeros(size(NormalHeightH,1),1);
 Hd = zeros(size(NormalHeightH,1),1);
 
-
+%Finds H values
 for i = 1:size(NormalHeightH,1)
     H(i) = OrthoHeight(C(i),g(i),NormalHeightH(i));
     Hd(i) = C(i)/ ybar45(i);
 end
 
+%Outputs results
 Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
-
 
 HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
 
@@ -69,18 +68,23 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 
 %% Task 1.2
 
+%Finds change in gravitys
 deltag = g - NormalGravityatH(fiDD,NormalHeightH);
 deltagBouger = g - NormalGravityatH(fiDD,NormalHeightH) - 0.1119.*NormalHeightH;
 
+%Corrects anomalies
 gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
 gravAnomBougerCorr = PlotHeights(deltagBouger,NormalHeightH,"Normal Height","Bouger Anomalies");
 
+%Finds bouger difference
 Bdiff = BouguerDiff(deltagBouger,H, ybar);
 
-EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
+%Plots results
+EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Height","Bouguer Difference and Helmert Difference Difference");
 
 %%Task 2
 
+%Finds the difference between Faye Anomaly and long wavelength model
 FayeDiff = Faye_Anomaly-GravityAnomaly_GM_200;
 writematrix(FayeDiff,"FayeDiff.txt");
 
