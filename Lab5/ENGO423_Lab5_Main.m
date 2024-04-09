@@ -27,40 +27,47 @@ gmGal = tbl.gmGal;
 clear opts tbl
 %From here it is our own code
 
- importfile("Faye_Anomaly.mat");
- importfile("GravityAnomaly_GM_200.mat");
+importfile("Faye_Anomaly.mat");
+importfile("GravityAnomaly_GM_200.mat");
+[NormalHeightH,I] = sort(NormalHeightH);
 
+
+
+%Initializes vectors
 ybar = zeros(size(NormalHeightH,1),1);
 ybar45 = zeros(size(NormalHeightH,1),1);
-
 C = zeros(size(NormalHeightH,1),1);
 g = gmGal*1E-5;
-%From here it is our own code
+g = g(I,:);
+fiDD = fiDD(I,:);
+[NormalHeightH,i] = sort(NormalHeightH);
 
 
+
+%Finds gravity values
 for i = 1:size(NormalHeightH)
     ybar45(i) = NormalGravity(45);
     [ybar(i),y(i)] = meanNormalGravity(fiDD(i),NormalHeightH(i));
 
 end
 
-
+%Finds C values
 for i = 1:size(NormalHeightH,1)
     C(i,1) = NormalHeightH(i)*ybar(i);
 end
 
-
+%Initializes vectros
 H = zeros(size(NormalHeightH,1),1);
 Hd = zeros(size(NormalHeightH,1),1);
 
-
+%Finds H values
 for i = 1:size(NormalHeightH,1)
     H(i) = OrthoHeight(C(i),g(i),NormalHeightH(i));
     Hd(i) = C(i)/ ybar45(i);
 end
 
+%Outputs results
 Hcorr = PlotHeights(NormalHeightH-H,NormalHeightH,"Normal Heights","Helmert and Normal Height Difference");
-
 
 HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Difference");
 
@@ -69,18 +76,21 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 
 %% Task 1.2
 
+%Finds change in gravitys
 deltag = g - NormalGravityatH(fiDD,NormalHeightH);
-deltagBouger = g - NormalGravityatH(fiDD,NormalHeightH) - 0.1119.*NormalHeightH;
+deltagBouger = g*1E5 - NormalGravityatH(fiDD,NormalHeightH)*1E5 - 0.1119.*NormalHeightH;
 
-gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
-gravAnomBougerCorr = PlotHeights(deltagBouger,NormalHeightH,"Normal Height","Bouger Anomalies");
 
-Bdiff = BouguerDiff(deltagBouger,H, ybar);
+gravAnomCorr = PlotGrav(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
+gravAnomBougerCorr = PlotGrav(deltagBouger*1E-5,NormalHeightH,"Normal Height","Bouger Anomalies");
 
-EmpRelationship = PlotHeights(Bdiff-(NormalHeightH-H),H,"Orthometric Heights","Bouguer Difference and Helmert Difference Difference");
+Bdiff = BouguerDiff(deltagBouger*1E-5,H, ybar);
 
-%%Task 2
+EmpRelationship = PlotHeights(abs(Bdiff-(NormalHeightH-H)),H,"Orthometric Height","Bouguer Difference and Helmert Difference Difference");
 
+%% Task 2
+
+%Finds the difference between Faye Anomaly and long wavelength model
 FayeDiff = Faye_Anomaly-GravityAnomaly_GM_200;
 writematrix(FayeDiff,"FayeDiff.txt");
 
@@ -89,8 +99,8 @@ writematrix(FayeDiff,"FayeDiff.txt");
 function [H] = OrthoHeight(C,g,Hstar)
 
      while true
-          gMean = g+(0.0424*Hstar);
-          H = C/(gMean);
+          gMean = g*1E5+(0.0424*Hstar);
+          H = C/(gMean*1E-5);
 
           if abs((Hstar-H)/H)<0.0001
               break
@@ -106,6 +116,20 @@ function [corr] = PlotHeights(Hdiff,H,xaxis,yaxis)
     plot(H,Hdiff,"-")
     xPhrase = [xaxis '(m)'];
     yPhrase = [yaxis '(m)'];
+    titlePhrase = [xaxis ' vs ' yaxis ' at Each Benchmark'];
+
+    title(titlePhrase);
+    xlabel(xPhrase);
+    ylabel(yPhrase);
+
+    corr = corrcoef(Hdiff,H);
+end
+
+function [corr] = PlotGrav(Hdiff,H,xaxis,yaxis)
+    figure;
+    plot(H,Hdiff,"-")
+    xPhrase = [xaxis '(m)'];
+    yPhrase = [yaxis '(m/s^2)'];
     titlePhrase = [xaxis ' vs ' yaxis ' at Each Benchmark'];
 
     title(titlePhrase);

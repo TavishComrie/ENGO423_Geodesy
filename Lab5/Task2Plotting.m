@@ -1,3 +1,4 @@
+%Imports all data
 clear all;
 clc;
 close all;
@@ -12,7 +13,7 @@ NIND = readmatrix('indrt.dat');
 NIND = reshape(NIND',240,330)';
 
 
-
+%Plots all results
 %% 2.a
 plotWavelengths(GeoidUndulation_GM_200, 'Geoid Height Long Wavelengths from GOCO02S nmax=200 (m)')
 

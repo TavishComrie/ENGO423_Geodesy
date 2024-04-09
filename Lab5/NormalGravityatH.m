@@ -1,6 +1,5 @@
 function [yH] = NormalGravityatH(lat,h)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%Finds gravity at h above ellipsoid
 ya = 9.7803267715;
 a = 6378137;
 f = 0.00335281068118;
