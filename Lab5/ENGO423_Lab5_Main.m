@@ -82,8 +82,8 @@ HdCorr = PlotHeights(H-Hd,H,"Helmert Height","Helmert and Dynamic Height Differe
 deltag = g - NormalGravityatH(fiDD,NormalHeightH);
 deltagBouger = g*1E5 - NormalGravityatH(fiDD,NormalHeightH)*1E5 - 0.1119.*NormalHeightH;
 
-gravAnomCorr = PlotHeights(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
-gravAnomBougerCorr = PlotHeights(deltagBouger*1E-5,NormalHeightH,"Normal Height","Bouger Anomalies");
+gravAnomCorr = PlotGrav(deltag,NormalHeightH,"Normal Height","Gravity Anomalies");
+gravAnomBougerCorr = PlotGrav(deltagBouger*1E-5,NormalHeightH,"Normal Height","Bouger Anomalies");
 
 Bdiff = BouguerDiff(deltagBouger*1E-5,H, ybar);
 
@@ -116,6 +116,20 @@ function [corr] = PlotHeights(Hdiff,H,xaxis,yaxis)
     plot(H,Hdiff,"-")
     xPhrase = [xaxis '(m)'];
     yPhrase = [yaxis '(m)'];
+    titlePhrase = [xaxis ' vs ' yaxis ' at Each Benchmark'];
+
+    title(titlePhrase);
+    xlabel(xPhrase);
+    ylabel(yPhrase);
+
+    corr = corrcoef(Hdiff,H);
+end
+
+function [corr] = PlotGrav(Hdiff,H,xaxis,yaxis)
+    figure;
+    plot(H,Hdiff,"-")
+    xPhrase = [xaxis '(m)'];
+    yPhrase = [yaxis '(m/s^2)'];
     titlePhrase = [xaxis ' vs ' yaxis ' at Each Benchmark'];
 
     title(titlePhrase);
